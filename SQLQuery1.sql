@@ -35,3 +35,27 @@ CREATE TABLE OrderDetails
 	productID INT REFERENCES Products(productID),
 	quantityOrdered INT
 );
+
+
+INSERT INTO Customers VALUES('Bob', 'Ross', '77 Bay Drive', 'Boise', 'ID', '44812');
+INSERT INTO Customers VALUES('Fannie', 'Mae', '5643 Castle Street', 'Washington', 'VA', '41512');
+INSERT INTO Customers VALUES('Freddie', 'Mac', '5643 Castle Street', 'Washington', 'VA', '41512');
+INSERT INTO Customers VALUES('Norm', 'Macdonald', '521', 'New York', 'NY', '56311');
+INSERT INTO Customers VALUES('Bill', 'Burr', '889 Shark Avenue', 'Los Angeles', 'CA', '99632');
+INSERT INTO Customers VALUES('Patrice', 'O''Neil', '889', 'Boston', 'MA', '85156');
+
+
+SELECT * FROM Customers;
+
+SELECT * FROM Products;
+
+SELECT * FROM Orders;
+
+SELECT * FROM OrderDetails;
+
+INSERT INTO Products VALUES('Bread', 2.00, '550');
+INSERT INTO Products VALUES('Milk', 4.00, '705');
+INSERT INTO Products VALUES('Eggs', 1.50, '200');
+INSERT INTO Products VALUES('Ham', 3.25, '614');
+INSERT INTO Products VALUES('Olive Oil', 4.15, '59');
+INSERT INTO Products VALUES('Tea', 3.10, '140');
