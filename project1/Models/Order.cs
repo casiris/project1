@@ -32,8 +32,15 @@ namespace project1.Models
             order.DateOrdered = DateTime.Now;
             order.CustomerId = customerId;
 
-            db.Orders.Add(order);
-            db.SaveChanges();
+            try
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Invalid customer ID");
+            }
 
             // apparently, with linq, when an insertion is done, the values are returned to the object
             // so here, i can get the id of the newly created order very easily
@@ -61,6 +68,13 @@ namespace project1.Models
                                     QuantityOrdered = orderDetail.QuantityOrdered,
                                     Price = products.Price
                                 });
+
+            // linq query will at the very least return an empty list/iqueryable if it doesn't find the entry in the database
+            // so to validate that, instead i'll check if it's empty, and if it is, return null and handle that exception
+            if (orderHistory.ToList().Count() < 1)
+            {
+                return null;
+            }
 
             return orderHistory;
         }
@@ -108,10 +122,12 @@ namespace project1.Models
             //JOIN Products ON OrderDetails.productID = Products.productID
             //WHERE customerID = 1;
 
+            DateTime lastDay = DateTime.Now.AddDays(-1);
+
             var invoice = (from order in db.Orders
                           join orderDetails in db.OrderDetails on order.OrderId equals orderDetails.OrderId
                           join products in db.Products on orderDetails.ProductId equals products.ProductId
-                          where order.CustomerId == id
+                          where (order.CustomerId == id) && (order.DateOrdered >= lastDay)
                           select new
                           {
                               ProductName = products.ProductName,
@@ -120,13 +136,19 @@ namespace project1.Models
                               CustomerID = order.CustomerId
                           });
 
+            // once again, if the entered customer id isn't found, return null
+            if (invoice.ToList().Count() < 1)
+            {
+                return null;
+            }
+
             foreach (var i in invoice)
             {
-                total += Convert.ToDouble(i.Price * i.QuantityOrdered);
+                total += Convert.ToDouble(i.Price) * Convert.ToDouble(i.QuantityOrdered);
                 outputString += i.ToString() + "\n\n";
             }
 
-            return outputString + "\n\nThe total for the entire order is: $" + total;
+            return outputString + "\n\nThe total for the entire order is: " + String.Format("{0:C2}", total);
         }
     }
 }

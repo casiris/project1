@@ -25,10 +25,24 @@ namespace project1.Models
                 var itemDetail = new OrderDetail();
                 itemDetail.OrderId = oID;
                 itemDetail.ProductId = item.ProductId;
-                itemDetail.QuantityOrdered = item.QuantityOrdered;
+                if (item.QuantityOrdered < 1)
+                {
+                    throw new Exception("0 or negative quantity");
+                }
+                else
+                {
+                    itemDetail.QuantityOrdered = item.QuantityOrdered;
+                }
 
-                db.Add(itemDetail);
-                db.SaveChanges();
+                try
+                {
+                    db.Add(itemDetail);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Invalid product ID");
+                }
             }
         }
     }

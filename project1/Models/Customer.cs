@@ -53,8 +53,15 @@ namespace project1.Models
             customer.StateInitials = state;     // needs to be validated (only two characters)
             customer.Zipcode = zip;             // needs to be validated (5 digit positive integer)
 
-            db.Customers.Add(customer);
-            db.SaveChanges();
+            try
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Invalid input");
+            }
 
             return "new customer id: " + customer.CustomerId.ToString();
         }

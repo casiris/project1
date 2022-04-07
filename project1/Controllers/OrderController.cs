@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using project1.Models;
+using System;
 using System.Collections.Generic;
 
 namespace project1.Controllers
@@ -15,38 +16,40 @@ namespace project1.Controllers
         [Route("PlaceOrder")]
         public IActionResult PlaceOrder(int customerId, List<OrderDetail> products)
         {
-            // the priority of placing an order is very particular
-            // first i need to validate whether or not the product id exists, and whether there's enough stock
-            //Product testProduct  = new Product();
-            //if (testProduct.DoesProductExist(products))
-            //{
+            // first i need to create the order in the database, because i'll need to orderID to pass to the orderDetail that is created next
+            int newOrderId = 0;
 
-            //}
-            //else
-            //{
-            //    throw new System.Exception("no product my guy");
-            //}
-
-
-            // then i need to create the order in the database, because i'll need to orderID to pass to the orderDetail that is created next
-            // create the orderDetail and add it to the database
-            int newOrderId = orderModel.PlaceOrder(customerId, products);
+            try
+            {
+                newOrderId = orderModel.PlaceOrder(customerId, products);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
             
-            // finally, call the OrderDetailsController so that it can handle the creation of the orderDetails part of the order
-            // or...maybe not bother with a controller for that, because wouldn't i need a route?
-            // and is a route really necessary when it's just a sub-process for the overall order?
-            orderDetailModel.AddOrderDetails(newOrderId, products);
+            // now create the orderDetails
+            try
+            {
+                orderDetailModel.AddOrderDetails(newOrderId, products);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
             return Ok();
-
-            //return Created("", orderModel.PlaceOrder(customerId, products));
         }
 
         [HttpGet]
         [Route("OrderHistory")]
-        public IActionResult OrderHistoryByCustomer(int cID)
+        public IActionResult OrderHistoryByCustomer(int customerID)
         {
-            return Ok(orderModel.OrderHistoryByCustomer(cID));
+            if (orderModel.OrderHistoryByCustomer(customerID) == null)
+            {
+                return BadRequest("Invalid customer ID");
+            }
+            return Ok(orderModel.OrderHistoryByCustomer(customerID));
         }
 
         [HttpGet]
@@ -58,9 +61,13 @@ namespace project1.Controllers
 
         [HttpGet]
         [Route("Invoice")]
-        public IActionResult GetInvoice(int id)
+        public IActionResult GetInvoice(int customerID)
         {
-            return Ok(orderModel.GetInvoice(id));
+            if (orderModel.GetInvoice(customerID) == null)
+            {
+                return BadRequest("Invalid customer ID");
+            }
+            return Ok(orderModel.GetInvoice(customerID));
         }
     }
 }

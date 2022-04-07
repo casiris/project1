@@ -67,6 +67,7 @@ INSERT INTO Orders VALUES('2022-04-03T21:08:42', 3);
 INSERT INTO Orders VALUES('2022-04-05T16:00:59', 7);
 
 DELETE FROM Orders WHERE orderID = 501;
+DELETE FROM Products WHERE productID = 113;
 
 INSERT INTO OrderDetails VALUES(502, 108, 4);
 INSERT INTO OrderDetails VALUES(503, 110, 1);
@@ -81,12 +82,12 @@ JOIN OrderDetails ON Orders.orderID = OrderDetails.orderID
 JOIN Products ON Products.productID = OrderDetails.productID
 WHERE customerID=1;
 
--- invoice
+-- invoice (of only the open orders)
 SELECT productName, price, quantityOrdered, customerID 
 FROM Orders
 JOIN OrderDetails ON Orders.orderID = OrderDetails.orderID
 JOIN Products ON OrderDetails.productID = Products.productID
-WHERE customerID = 1;
+WHERE customerID = 1 AND dateOrdered >= DATEADD(day, -1, GETDATE()); 
 
 SELECT Orders.orderID, dateOrdered, customerID, productName, quantityOrdered, price FROM Orders
 JOIN OrderDetails ON orders.orderID = OrderDetails.orderID

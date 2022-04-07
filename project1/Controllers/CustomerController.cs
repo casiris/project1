@@ -15,7 +15,6 @@ namespace project1.Controllers
         [Route("GetCustomers")]
         public IActionResult GetAllCustomers()
         {
-            // will need to try/catch this eventually
             return Ok(customerModel.GetAllCustomers());
         }
 
@@ -23,7 +22,13 @@ namespace project1.Controllers
         [Route("GetCustomerById")]
         public IActionResult GetCustomerById(int id)
         {
-            return Ok(customerModel.GetCustomerById(id));
+            Customer cu = customerModel.GetCustomerById(id);
+
+            if (cu == null)
+            {
+                return BadRequest("Invalid customer ID");
+            }
+            return Ok(cu);
         }
 
         [HttpPut]
@@ -31,7 +36,14 @@ namespace project1.Controllers
         // as far as i can tell, any object passed into the function will be turned into a json object in swagger, which allows you to type all the info
         public IActionResult AddCustomer(string firstName, string lastName, string street, string city, string state, int zip)
         {
-            return Created("", customerModel.AddCustomer(firstName, lastName, street, city, state, zip));
+            try
+            {
+                return Created("", customerModel.AddCustomer(firstName, lastName, street, city, state, zip));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
