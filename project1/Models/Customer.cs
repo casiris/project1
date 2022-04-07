@@ -8,10 +8,10 @@ namespace project1.Models
 {
     public partial class Customer
     {
-        //public Customer()
-        //{
-        //    Orders = new HashSet<Order>();
-        //}
+        public Customer()
+        {
+            Orders = new HashSet<Order>();
+        }
 
         public int CustomerId { get; set; }        // this really doesn't need to be displayed, since the customer doesn't need to know it
         public string FirstName { get; set; }
@@ -23,7 +23,7 @@ namespace project1.Models
 
         // apparently this is for a one to many relationship (one customer can have many orders)
         // not sure how that relates to inputting data though
-        //public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
         shoppingAppContext db = new shoppingAppContext();
 
@@ -43,12 +43,20 @@ namespace project1.Models
             return customer;
         }
 
-        public string AddCustomer(Customer customer)
+        public string AddCustomer(string firstName, string lastName, string street, string city, string state, int zip)
         {
+            Customer customer = new Customer();
+            customer.FirstName = firstName;     // technically these should be validated too, just so they won't exceed the character limit
+            customer.LastName = lastName;
+            customer.Street = street;
+            customer.City = city;
+            customer.StateInitials = state;     // needs to be validated (only two characters)
+            customer.Zipcode = zip;             // needs to be validated (5 digit positive integer)
+
             db.Customers.Add(customer);
             db.SaveChanges();
 
-            return "Customer added";
+            return "new customer id: " + customer.CustomerId.ToString();
         }
     }
 }

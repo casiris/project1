@@ -98,10 +98,10 @@ namespace project1.Models
 
                 entity.Property(e => e.QuantityOrdered).HasColumnName("quantityOrdered");
 
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__OrderDeta__order__2B3F6F97");
+                //entity.HasOne(d => d.Order)
+                //    .WithMany(p => p.OrderDetails)
+                //    .HasForeignKey(d => d.OrderId)
+                //    .HasConstraintName("FK__OrderDeta__order__2B3F6F97");
 
                 //entity.HasOne(d => d.Product)
                 //    .WithMany(p => p.OrderDetails)

@@ -73,3 +73,17 @@ C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\runt
 C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Microsoft.Azure.Services.AppAuthentication.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.AspNetCore.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Extensions.Hosting.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Extensions.Logging.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Settings.Configuration.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Sinks.Console.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Sinks.File.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Sinks.MSSqlServer.dll
+C:\Users\acuff\Desktop\training_sessions\project1\project1\bin\Debug\net5.0\Serilog.Sinks.PeriodicBatching.dll

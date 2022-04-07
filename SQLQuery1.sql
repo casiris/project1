@@ -59,3 +59,36 @@ INSERT INTO Products VALUES('Eggs', 1.50, '200');
 INSERT INTO Products VALUES('Ham', 3.25, '614');
 INSERT INTO Products VALUES('Olive Oil', 4.15, '59');
 INSERT INTO Products VALUES('Tea', 3.10, '140');
+
+INSERT INTO Orders VALUES('2022-04-02T11:50:23', 1);
+INSERT INTO Orders VALUES('2022-04-01T13:27:02', 5);
+INSERT INTO Orders VALUES('2022-04-03T17:24:24', 2);
+INSERT INTO Orders VALUES('2022-04-03T21:08:42', 3);
+INSERT INTO Orders VALUES('2022-04-05T16:00:59', 7);
+
+DELETE FROM Orders WHERE orderID = 501;
+
+INSERT INTO OrderDetails VALUES(502, 108, 4);
+INSERT INTO OrderDetails VALUES(503, 110, 1);
+INSERT INTO OrderDetails VALUES(506, 111, 1);
+INSERT INTO OrderDetails VALUES(504, 106, 2);
+INSERT INTO OrderDetails VALUES(505, 102, 5);
+
+-- order history by customer
+SELECT Orders.orderID, dateOrdered, customerID, productName, quantityOrdered, price 
+FROM Orders 
+JOIN OrderDetails ON Orders.orderID = OrderDetails.orderID
+JOIN Products ON Products.productID = OrderDetails.productID
+WHERE customerID=1;
+
+-- invoice
+SELECT productName, price, quantityOrdered, customerID 
+FROM Orders
+JOIN OrderDetails ON Orders.orderID = OrderDetails.orderID
+JOIN Products ON OrderDetails.productID = Products.productID
+WHERE customerID = 1;
+
+SELECT Orders.orderID, dateOrdered, customerID, productName, quantityOrdered, price FROM Orders
+JOIN OrderDetails ON orders.orderID = OrderDetails.orderID
+JOIN Products ON OrderDetails.productID = Products.productID
+WHERE dateOrdered >= DATEADD(day, -1, GETDATE()); 

@@ -11,15 +11,15 @@ An App, which will help customer to feel the virtual energy
 Functionalities
 
 API shoule be able to perform the following operations
+----------------------------------------------------------------------
 	should be able to add new customer
 	search the customer
 	view list of customers
 	Place an order for customer (eg. book a cab for customer when they call customer care)
-			-for this, i'll need to input the customer id, product id, quantity ordered, and then make two separate queries to insert into the orders table and orderdetails tables separately with the appropriate data
-	order history by customer	- search order table where customer id = x, simple enough, maybe sort by date
-	display the details for the open orders / bookings	- not sure how to handle open orders exactly. i think i'll just go with orders less than a day old are open, and just pretend all orders are processed within 24 hours
-	view the history of all the transactions for any customer	- basically the same as order history? i don't see the difference here
-	view the bill payable - Invoice  for a customer
+	order history by customer
+	display the details for the open orders / bookings
+	view the history of all the transactions for any customer
+	view the bill payable
 
 	All the search to be based on the customerID or OrderId
 
@@ -55,8 +55,7 @@ also have to do a powerpoint, great...
 draw.io for Entity Relationship diagram (database structure diagram)
 
 
-
-
+for ppt, er diagram, tech stack, what to improve/add in the future
 
 
 
