@@ -12,7 +12,7 @@ namespace project1.Controllers
         Order orderModel = new Order();
         OrderDetail orderDetailModel = new OrderDetail();
 
-        [HttpPut]
+        [HttpPost]
         [Route("PlaceOrder")]
         public IActionResult PlaceOrder(int customerId, List<OrderDetail> products)
         {

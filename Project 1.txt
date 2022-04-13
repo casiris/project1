@@ -25,8 +25,8 @@ API shoule be able to perform the following operations
 
 --------------
 Additional Mandatory Features
-Exception Handling (throw appropriate error message)
-Validations			-- only need try/catches to send a 400 error, not necessarily looping until the user enters a valid input 
+Exception Handling
+Validations
 No hard coded data anywhere in the code
 all the data to be persisted to database
 Database should be normalized upto 3NF
@@ -35,31 +35,3 @@ you need to have an ER diagram for the same for the data
 ----
 Self Research, learn and implement
 Logging - Serilog (this is very easy to implemennt) - log everything to db
-
-
-
-
-
-_______________________________________________________
-
-
-API
-
-_______________________________________________________
-
-
-ASP.NET WebAPI (model and controller, no view). model talks to the database, does whatever with the data, controller listens to requests
--swagger page is enough
-
-also have to do a powerpoint, great...
-draw.io for Entity Relationship diagram (database structure diagram)
-
-
-for ppt, er diagram, tech stack, what to improve/add in the future
-
-
-
-
-
-
-	
