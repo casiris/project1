@@ -4,3 +4,20 @@ Technologies used include:
   - ASP.NET Framework
   - MS SQL Server
   - Swagger
+  - Serilog
+
+Features:
+  - Create an account
+  - Place an order
+  - View your open orders
+  - View your invoice for open orders
+
+To-do:
+  - Add a way to view products
+  - Add views
+
+Getting started:
+  - git clone https://github.com/casiris/project1.git
+  - Open .sln file in Visual Studio, then build it
+   
+
